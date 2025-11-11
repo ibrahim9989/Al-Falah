@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf8f3;
+  --foreground: #1a1a1a;
+  --arabic-green: #056839;
+  --arabic-green-light: #0d7a4d;
+  --arabic-green-dark: #034d2a;
+  --arabic-gold: #d4af37;
+  --arabic-gold-light: #e5c158;
+  --arabic-blue: #1e3a5f;
+  --arabic-blue-light: #2d4f7a;
+  --arabic-cream: #f5f1e8;
+  --arabic-brown: #8b6f47;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: linear-gradient(to bottom, #faf8f3 0%, #f5f1e8 100%);
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: var(--font-cairo), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Arabic/Kufic heading styles */
+.font-kufi {
+  font-family: var(--font-kufi), sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* Geometric pattern background */
+.geometric-pattern {
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(5, 104, 57, 0.03) 10px, rgba(5, 104, 57, 0.03) 20px),
+    repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(212, 175, 55, 0.03) 10px, rgba(212, 175, 55, 0.03) 20px);
+}
+
+/* Decorative border pattern */
+.decorative-border {
+  position: relative;
+}
+
+.decorative-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    #d4af37 20%, 
+    #056839 50%, 
+    #d4af37 80%, 
+    transparent 100%);
+  border-radius: 2px;
+}
+
+/* Dark Mode Styles */
+.dark {
+  --background: #0a0f0c;
+  --foreground: #f5f1e8;
+}
+
+.dark body {
+  background: linear-gradient(to bottom, #0a0f0c 0%, #0d1410 100%);
+  color: var(--foreground);
+}
+
+.dark .geometric-pattern {
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(5, 104, 57, 0.1) 10px, rgba(5, 104, 57, 0.1) 20px),
+    repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(212, 175, 55, 0.1) 10px, rgba(212, 175, 55, 0.1) 20px);
+}
