@@ -71,7 +71,7 @@ export default function OnboardMasjid() {
         </div>
       </header>
 
-      <main className="max-w-md mx-auto px-4 py-6 pb-24">
+      <main className="max-w-md mx-auto px-4 py-6 pb-6">
         {/* Progress Bar */}
         <div className="mb-6">
           <div className="flex items-center justify-between">

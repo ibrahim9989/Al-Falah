@@ -176,7 +176,7 @@ export default function MasjidDetailPage() {
         </div>
       </header>
 
-      <main className="max-w-md mx-auto px-4 py-6 pb-28">
+      <main className="max-w-md mx-auto px-4 py-6 pb-6">
         {/* Masjid Info Card */}
         <div 
           className="rounded-3xl p-6 mb-6 shadow-lg border-2 relative overflow-hidden"

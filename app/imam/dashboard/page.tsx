@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 export default function ImamDashboard() {
   const [masjid, setMasjid] = useState({
     id: '1',

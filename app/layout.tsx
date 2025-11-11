@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Kufi_Arabic, Cairo } from "next/font/google";
 import "./globals.css";
+import BottomNav from "./components/BottomNav";
+import ImamNav from "./components/ImamNav";
 
 const notoKufi = Noto_Kufi_Arabic({
   variable: "--font-kufi",
@@ -32,6 +34,8 @@ export default function RootLayout({
         className={`${notoKufi.variable} ${cairo.variable} antialiased`}
       >
         {children}
+        <BottomNav />
+        <ImamNav />
       </body>
     </html>
   );
