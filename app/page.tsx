@@ -141,7 +141,7 @@ function HomeContent() {
   return (
     <div className="min-h-screen geometric-pattern">
       {/* Header - Premium Arabic style */}
-      <header className="bg-white/98 backdrop-blur-md shadow-lg sticky top-0 z-40 decorative-border">
+      <header className="bg-white/98 backdrop-blur-md shadow-lg sticky top-0 z-50 decorative-border">
         <div className="max-w-md mx-auto px-4 py-5">
           <div className="flex items-center justify-between mb-2">
             <div className="relative">

@@ -45,28 +45,31 @@ export default function SideMenu() {
       {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/60 z-[100]"
+          className="fixed inset-0 bg-black/60 z-[9998]"
           onClick={() => setIsOpen(false)}
         ></div>
       )}
 
       {/* Side Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-[101] transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-[9999] transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{ 
           borderLeft: '3px solid #056839',
-          boxShadow: '-4px 0 20px rgba(0,0,0,0.15)'
+          boxShadow: '-4px 0 20px rgba(0,0,0,0.15)',
+          maxHeight: '100vh',
+          overflowY: 'auto'
         }}
       >
         <div className="flex flex-col h-full">
           {/* Header - Premium Arabic style */}
           <div 
-            className="p-6 border-b-2 relative overflow-hidden"
+            className="p-6 border-b-2 relative overflow-hidden sticky top-0 bg-white z-10"
             style={{ 
               borderColor: '#d4af37',
-              background: 'linear-gradient(135deg, rgba(5, 104, 57, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%)'
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(250, 248, 243, 1) 100%)',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
             }}
           >
             {/* Decorative pattern */}
@@ -94,8 +97,12 @@ export default function SideMenu() {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 rounded-xl hover:bg-white/50 transition-all hover:scale-110"
-                style={{ backgroundColor: 'rgba(5, 104, 57, 0.1)' }}
+                className="p-2 rounded-xl hover:bg-white/50 transition-all hover:scale-110 active:scale-95"
+                style={{ 
+                  backgroundColor: 'rgba(5, 104, 57, 0.1)',
+                  border: '1px solid rgba(5, 104, 57, 0.2)'
+                }}
+                aria-label="Close menu"
               >
                 <svg className="w-6 h-6" style={{ color: '#056839' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
@@ -176,10 +183,13 @@ export default function SideMenu() {
 
           {/* Footer */}
           <div 
-            className="p-4 border-t-2 text-center"
-            style={{ borderColor: '#e5d4b8' }}
+            className="p-4 border-t-2 text-center sticky bottom-0 bg-white"
+            style={{ 
+              borderColor: '#d4af37',
+              boxShadow: '0 -2px 8px rgba(0,0,0,0.05)'
+            }}
           >
-            <p className="text-xs" style={{ color: '#8b6f47' }}>
+            <p className="text-xs font-semibold" style={{ color: '#8b6f47' }}>
               Al Falah v1.0
             </p>
           </div>
