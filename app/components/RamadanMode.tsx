@@ -100,10 +100,12 @@ export default function RamadanMode() {
 
   return (
     <div 
-      className="rounded-3xl p-6 mb-6 shadow-lg border-2 relative overflow-hidden"
+      className="premium-card rounded-3xl p-6 mb-6 relative overflow-hidden"
       style={{ 
-        background: 'linear-gradient(135deg, #1e3a5f 0%, #2d4f7a 100%)',
-        borderColor: '#1a2f4a'
+        background: 'linear-gradient(135deg, #1e3a5f 0%, #2d4f7a 50%, #1e3a5f 100%)',
+        borderColor: '#d4af37',
+        borderWidth: '2px',
+        boxShadow: '0 8px 32px rgba(30, 58, 95, 0.3), 0 2px 8px rgba(212, 175, 55, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
       }}
     >
       {/* Decorative pattern overlay */}

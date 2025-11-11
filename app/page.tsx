@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import MasjidCard from './components/MasjidCard';
 import PrayerTracker from './components/PrayerTracker';
@@ -55,7 +56,8 @@ const mockMasjids = [
   },
 ];
 
-export default function Home() {
+function HomeContent() {
+  const searchParams = useSearchParams();
   const [locationEnabled, setLocationEnabled] = useState(false);
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -63,6 +65,16 @@ export default function Home() {
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [masjids, setMasjids] = useState(mockMasjids);
   const [selectedLocation, setSelectedLocation] = useState<{ id: string; name: string; lat: number; lng: number } | null>(null);
+
+  // Sync activeTab with URL params
+  useEffect(() => {
+    const tab = searchParams?.get('tab');
+    if (tab && ['masjids', 'tracker', 'qibla', 'map', 'subscribed', 'ramadan', 'history'].includes(tab)) {
+      setActiveTab(tab as any);
+    } else if (!tab) {
+      setActiveTab('masjids');
+    }
+  }, [searchParams]);
 
   const handleEnableLocation = async () => {
     setIsLoadingLocation(true);
@@ -208,6 +220,53 @@ export default function Home() {
 
 
         {/* Tab Content */}
+        {activeTab === 'masjids' && locationEnabled && (
+          <>
+            {/* Search Bar */}
+            <div className="mb-6">
+              <div className="relative">
+                <svg
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5"
+                  style={{ color: '#8b6f47' }}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Search masjids..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:border-[#056839] transition-all"
+                  style={{ 
+                    borderColor: '#d4af37',
+                    backgroundColor: 'white',
+                    borderWidth: '2px',
+                    boxShadow: '0 2px 8px rgba(212, 175, 55, 0.1)'
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Masjid Cards */}
+            {filteredMasjids.length > 0 ? (
+              <div>
+                {filteredMasjids.map((masjid) => (
+                  <MasjidCard key={masjid.id} masjid={masjid} />
+                ))}
+              </div>
+            ) : (
+              <div 
+                className="rounded-3xl p-8 text-center premium-card"
+                style={{ borderColor: '#d4af37' }}
+              >
+                <p className="text-gray-500">No masjids found</p>
+              </div>
+            )}
+          </>
+        )}
         {activeTab === 'subscribed' && <SubscribedMasjids allMasjids={masjids} />}
         {activeTab === 'tracker' && <PrayerTracker />}
         {activeTab === 'ramadan' && <RamadanMode />}
@@ -234,8 +293,8 @@ export default function Home() {
           </>
         )}
 
-        {/* Location Button */}
-        {!locationEnabled ? (
+        {/* Location Button - Only show when location not enabled and on masjids tab */}
+        {!locationEnabled && activeTab === 'masjids' && (
           <div 
             className="rounded-3xl p-6 mb-6 text-white shadow-2xl relative overflow-hidden"
             style={{ 
@@ -279,60 +338,23 @@ export default function Home() {
               </div>
             </div>
           </div>
-        ) : activeTab === 'masjids' ? (
-          <>
-            {/* Search Bar */}
-            <div className="mb-6">
-              <div className="relative">
-                <svg
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5"
-                  style={{ color: '#8b6f47' }}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <input
-                  type="text"
-                  placeholder="Search masjids..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 bg-white rounded-2xl border-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:border-[#056839] text-gray-900 placeholder-gray-400 transition-all"
-                  style={{ borderColor: '#e5d4b8' }}
-                />
-              </div>
-            </div>
-
-            {/* Location Status */}
-            <div className="flex items-center gap-2 mb-6 text-sm" style={{ color: '#056839' }}>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span className="font-medium">Showing masjids near your location</span>
-            </div>
-
-            {/* Masjid List */}
-            <div>
-              <h2 className="text-xl font-kufi font-semibold mb-4" style={{ color: '#1e3a5f' }}>
-                Nearby Masjids ({filteredMasjids.length})
-              </h2>
-              {filteredMasjids.length > 0 ? (
-                filteredMasjids.map((masjid) => (
-                  <MasjidCard key={masjid.id} masjid={masjid} />
-                ))
-              ) : (
-                <div className="bg-white rounded-2xl p-8 text-center border-2 shadow-sm" style={{ borderColor: '#e5d4b8' }}>
-                  <svg className="w-12 h-12 mx-auto mb-3" style={{ color: '#d4af37' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                  <p className="text-sm" style={{ color: '#8b6f47' }}>No masjids found</p>
-                </div>
-              )}
-            </div>
-          </>
-        ) : null}
+        )}
       </main>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen geometric-pattern flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#056839] mx-auto mb-4"></div>
+          <p className="text-[#056839] font-semibold">Loading...</p>
+        </div>
+      </div>
+    }>
+      <HomeContent />
+    </Suspense>
   );
 }

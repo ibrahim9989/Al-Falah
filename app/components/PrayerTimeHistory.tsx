@@ -53,12 +53,21 @@ export default function PrayerTimeHistory() {
 
   return (
     <div 
-      className="rounded-3xl p-6 mb-6 shadow-lg border-2 relative overflow-hidden"
+      className="premium-card rounded-3xl p-6 mb-6 relative overflow-hidden"
       style={{ 
-        background: 'linear-gradient(135deg, #f0f9f4 0%, #e8f5ee 100%)',
-        borderColor: '#c3e6d3'
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 249, 244, 0.98) 100%)',
+        borderColor: '#d4af37',
+        borderWidth: '2px',
+        boxShadow: '0 8px 32px rgba(5, 104, 57, 0.08), 0 2px 8px rgba(212, 175, 55, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9)'
       }}
     >
+      {/* Decorative elements */}
+      <div 
+        className="absolute top-0 right-0 w-32 h-32 opacity-5"
+        style={{
+          background: 'radial-gradient(circle, #056839 0%, transparent 70%)'
+        }}
+      ></div>
       <div className="flex items-center justify-between mb-5">
         <h2 className="text-xl font-kufi font-semibold" style={{ color: '#056839' }}>
           Prayer Time History

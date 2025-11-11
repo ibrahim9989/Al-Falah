@@ -18,8 +18,11 @@ export default function MasjidCard({ masjid }: MasjidCardProps) {
   return (
     <Link href={`/masjid/${masjid.id}`}>
       <div 
-        className="bg-white rounded-2xl shadow-md border-2 p-5 mb-4 active:scale-[0.98] transition-all hover:shadow-lg relative overflow-hidden group"
-        style={{ borderColor: '#e5d4b8' }}
+        className="premium-card rounded-3xl p-6 mb-4 active:scale-[0.98] transition-all hover:shadow-2xl hover:scale-[1.02] relative overflow-hidden group"
+        style={{ 
+          borderColor: '#d4af37',
+          borderWidth: '2px'
+        }}
       >
         {/* Decorative corner accent */}
         <div 
