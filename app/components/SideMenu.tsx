@@ -45,62 +45,110 @@ export default function SideMenu() {
       {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-50"
+          className="fixed inset-0 bg-black/60 z-[100]"
           onClick={() => setIsOpen(false)}
         ></div>
       )}
 
       {/* Side Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 transform transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-[101] transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
-        style={{ borderLeft: '2px solid #e5d4b8' }}
+        style={{ 
+          borderLeft: '3px solid #056839',
+          boxShadow: '-4px 0 20px rgba(0,0,0,0.15)'
+        }}
       >
         <div className="flex flex-col h-full">
-          {/* Header */}
+          {/* Header - Premium Arabic style */}
           <div 
-            className="p-6 border-b-2"
-            style={{ borderColor: '#e5d4b8' }}
+            className="p-6 border-b-2 relative overflow-hidden"
+            style={{ 
+              borderColor: '#d4af37',
+              background: 'linear-gradient(135deg, rgba(5, 104, 57, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%)'
+            }}
           >
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-kufi font-bold" style={{ color: '#056839' }}>
-                Al Falah
-              </h2>
+            {/* Decorative pattern */}
+            <div 
+              className="absolute top-0 right-0 w-32 h-32 opacity-5"
+              style={{
+                background: 'radial-gradient(circle, #056839 0%, transparent 70%)'
+              }}
+            ></div>
+            
+            <div className="flex items-center justify-between mb-4 relative z-10">
+              <div>
+                <h2 className="text-3xl font-kufi font-bold mb-1" style={{ 
+                  color: '#056839',
+                  textShadow: '0 2px 4px rgba(5, 104, 57, 0.1)'
+                }}>
+                  Al Falah
+                </h2>
+                <div 
+                  className="h-1 w-16 rounded-full"
+                  style={{
+                    background: 'linear-gradient(90deg, #d4af37 0%, #056839 100%)'
+                  }}
+                ></div>
+              </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                className="p-2 rounded-xl hover:bg-white/50 transition-all hover:scale-110"
+                style={{ backgroundColor: 'rgba(5, 104, 57, 0.1)' }}
               >
                 <svg className="w-6 h-6" style={{ color: '#056839' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
-            <p className="text-sm" style={{ color: '#8b6f47' }}>
+            <p className="text-sm font-semibold relative z-10" style={{ color: '#8b6f47' }}>
               Navigate to features
             </p>
           </div>
 
-          {/* Menu Items */}
+          {/* Menu Items - Premium styling */}
           <div className="flex-1 overflow-y-auto p-4">
-            <div className="space-y-1">
+            <div className="space-y-2">
               {menuItems.map((item, index) => (
                 <Link
                   key={index}
                   href={item.path}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-4 p-4 rounded-xl transition-all hover:bg-gray-50 active:scale-[0.98]"
+                  className="flex items-center gap-4 p-4 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98] relative group"
                   style={{
-                    backgroundColor: pathname === item.path ? '#f0f9f4' : 'transparent',
-                    border: pathname === item.path ? '2px solid #c3e6d3' : 'none'
+                    background: pathname === item.path 
+                      ? 'linear-gradient(135deg, rgba(5, 104, 57, 0.1) 0%, rgba(5, 104, 57, 0.05) 100%)'
+                      : 'transparent',
+                    border: pathname === item.path ? '2px solid #056839' : '2px solid transparent',
+                    boxShadow: pathname === item.path 
+                      ? '0 4px 12px rgba(5, 104, 57, 0.15)' 
+                      : 'none'
                   }}
                 >
-                  <span className="text-2xl">{item.icon}</span>
-                  <span className="font-semibold flex-1" style={{ color: '#1e3a5f' }}>
+                  <div 
+                    className="p-3 rounded-xl"
+                    style={{
+                      background: pathname === item.path 
+                        ? 'linear-gradient(135deg, #056839 0%, #0d7a4d 100%)'
+                        : 'linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(5, 104, 57, 0.1) 100%)'
+                    }}
+                  >
+                    <span className="text-2xl">{item.icon}</span>
+                  </div>
+                  <span className="font-kufi font-bold flex-1 text-lg" style={{ 
+                    color: pathname === item.path ? '#056839' : '#1e3a5f'
+                  }}>
                     {item.label}
                   </span>
-                  <svg className="w-5 h-5" style={{ color: '#056839' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <svg 
+                    className="w-5 h-5 transition-transform group-hover:translate-x-1" 
+                    style={{ color: '#056839' }} 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                   </svg>
                 </Link>
               ))}

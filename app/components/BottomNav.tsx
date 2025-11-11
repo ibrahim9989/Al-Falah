@@ -16,7 +16,6 @@ const navItems: NavItem[] = [
   { id: 'subscribed', label: 'Subscribed', icon: '🔔', path: '/?tab=subscribed' },
   { id: 'tracker', label: 'Tracker', icon: '📿', path: '/?tab=tracker' },
   { id: 'qibla', label: 'Qibla', icon: '🧭', path: '/?tab=qibla' },
-  { id: 'more', label: 'More', icon: '☰', path: '/?tab=more' },
 ];
 
 function BottomNavContent() {

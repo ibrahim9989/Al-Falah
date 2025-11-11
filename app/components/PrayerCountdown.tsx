@@ -70,14 +70,25 @@ export default function PrayerCountdown() {
 
   return (
     <div 
-      className="rounded-3xl p-6 mb-6 shadow-lg border-2 relative overflow-hidden"
+      className="rounded-3xl p-6 mb-6 premium-card relative overflow-hidden"
       style={{ 
         background: isPrayerTime
-          ? 'linear-gradient(135deg, #d4af37 0%, #e5c158 100%)'
-          : 'linear-gradient(135deg, #056839 0%, #0d7a4d 100%)',
-        borderColor: isPrayerTime ? '#c9a028' : '#034d2a'
+          ? 'linear-gradient(135deg, #d4af37 0%, #e5c158 50%, #d4af37 100%)'
+          : 'linear-gradient(135deg, #056839 0%, #0d7a4d 50%, #056839 100%)',
+        borderColor: isPrayerTime ? '#d4af37' : '#056839',
+        borderWidth: '2px',
+        boxShadow: isPrayerTime
+          ? '0 8px 32px rgba(212, 175, 55, 0.4), 0 2px 8px rgba(212, 175, 55, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+          : '0 8px 32px rgba(5, 104, 57, 0.3), 0 2px 8px rgba(5, 104, 57, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
       }}
     >
+      {/* Decorative elements */}
+      <div 
+        className="absolute top-0 right-0 w-40 h-40 opacity-10"
+        style={{
+          background: 'radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%)'
+        }}
+      ></div>
       {/* Decorative pattern overlay */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{

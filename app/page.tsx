@@ -59,7 +59,7 @@ export default function Home() {
   const [locationEnabled, setLocationEnabled] = useState(false);
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeTab, setActiveTab] = useState<'masjids' | 'tracker' | 'qibla' | 'map' | 'subscribed' | 'ramadan' | 'history' | 'more'>('masjids');
+  const [activeTab, setActiveTab] = useState<'masjids' | 'tracker' | 'qibla' | 'map' | 'subscribed' | 'ramadan' | 'history'>('masjids');
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [masjids, setMasjids] = useState(mockMasjids);
   const [selectedLocation, setSelectedLocation] = useState<{ id: string; name: string; lat: number; lng: number } | null>(null);
@@ -128,15 +128,31 @@ export default function Home() {
 
   return (
     <div className="min-h-screen geometric-pattern">
-      {/* Header */}
-      <header className="bg-white/95 backdrop-blur-sm shadow-md sticky top-0 z-10 decorative-border">
+      {/* Header - Premium Arabic style */}
+      <header className="bg-white/98 backdrop-blur-md shadow-lg sticky top-0 z-40 decorative-border">
         <div className="max-w-md mx-auto px-4 py-5">
           <div className="flex items-center justify-between mb-2">
-            <div>
-              <h1 className="text-3xl font-kufi font-bold mb-1" style={{ color: '#056839' }}>
+            <div className="relative">
+              <h1 className="text-4xl font-kufi font-bold mb-1 relative" style={{ 
+                color: '#056839',
+                textShadow: '0 2px 4px rgba(5, 104, 57, 0.1)',
+                letterSpacing: '0.02em'
+              }}>
                 Al Falah
+                <span 
+                  className="absolute -top-1 -right-6 text-xl opacity-30"
+                  style={{ color: '#d4af37' }}
+                >
+                  ◊
+                </span>
               </h1>
-              <p className="text-sm" style={{ color: '#8b6f47' }}>Find masjids near you</p>
+              <p className="text-sm font-semibold" style={{ color: '#8b6f47' }}>Find masjids near you</p>
+              <div 
+                className="absolute -bottom-1 left-0 h-0.5 w-20 rounded-full"
+                style={{
+                  background: 'linear-gradient(90deg, #d4af37 0%, #056839 100%)'
+                }}
+              ></div>
             </div>
             <div className="flex items-center gap-2">
               <SideMenu />
@@ -153,9 +169,8 @@ export default function Home() {
         {/* Prayer Countdown - Always visible */}
         <PrayerCountdown />
 
-        {/* Tabs - Only show if not using bottom nav */}
-        {activeTab !== 'more' && (
-          <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
+        {/* Tabs */}
+        <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
             {[
               { id: 'masjids', label: 'Masjids', icon: '🕌' },
               { id: 'subscribed', label: 'Subscribed', icon: '🔔' },
@@ -188,64 +203,9 @@ export default function Home() {
               <span className="mr-2">{tab.icon}</span>
               {tab.label}
             </button>
-            ))}
-          </div>
-        )}
+          ))}
+        </div>
 
-        {/* More Tab Content */}
-        {activeTab === 'more' && (
-          <div className="space-y-4">
-            <div 
-              className="bg-white rounded-3xl p-6 shadow-lg border-2"
-              style={{ borderColor: '#e5d4b8' }}
-            >
-              <h2 className="text-xl font-kufi font-semibold mb-4" style={{ color: '#056839' }}>
-                More Features
-              </h2>
-              <div className="space-y-3">
-                <button
-                  onClick={() => setActiveTab('ramadan')}
-                  className="w-full p-4 rounded-xl border-2 text-left transition-all hover:shadow-md"
-                  style={{ borderColor: '#e5d4b8', backgroundColor: '#faf8f3' }}
-                >
-                  <div className="flex items-center gap-4">
-                    <span className="text-2xl">🌙</span>
-                    <div>
-                      <p className="font-semibold" style={{ color: '#1e3a5f' }}>Ramadan Mode</p>
-                      <p className="text-xs" style={{ color: '#8b6f47' }}>Iftar/Suhoor timers and fasting tracker</p>
-                    </div>
-                  </div>
-                </button>
-                <button
-                  onClick={() => setActiveTab('history')}
-                  className="w-full p-4 rounded-xl border-2 text-left transition-all hover:shadow-md"
-                  style={{ borderColor: '#e5d4b8', backgroundColor: '#faf8f3' }}
-                >
-                  <div className="flex items-center gap-4">
-                    <span className="text-2xl">📅</span>
-                    <div>
-                      <p className="font-semibold" style={{ color: '#1e3a5f' }}>Prayer Time History</p>
-                      <p className="text-xs" style={{ color: '#8b6f47' }}>View past prayer times and trends</p>
-                    </div>
-                  </div>
-                </button>
-                <Link
-                  href="/onboard"
-                  className="block w-full p-4 rounded-xl border-2 text-left transition-all hover:shadow-md"
-                  style={{ borderColor: '#e5d4b8', backgroundColor: '#faf8f3' }}
-                >
-                  <div className="flex items-center gap-4">
-                    <span className="text-2xl">➕</span>
-                    <div>
-                      <p className="font-semibold" style={{ color: '#1e3a5f' }}>Register Masjid</p>
-                      <p className="text-xs" style={{ color: '#8b6f47' }}>Add your masjid to Al Falah</p>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Tab Content */}
         {activeTab === 'subscribed' && <SubscribedMasjids allMasjids={masjids} />}

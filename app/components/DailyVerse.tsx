@@ -52,12 +52,27 @@ export default function DailyVerse() {
 
   return (
     <div 
-      className="rounded-3xl p-6 mb-6 shadow-lg border-2 relative overflow-hidden"
+      className="rounded-3xl p-6 mb-6 premium-card relative overflow-hidden"
       style={{ 
-        background: 'linear-gradient(135deg, #1e3a5f 0%, #2d4f7a 100%)',
-        borderColor: '#1a2f4a'
+        background: 'linear-gradient(135deg, #1e3a5f 0%, #2d4f7a 50%, #1e3a5f 100%)',
+        borderColor: '#d4af37',
+        borderWidth: '2px',
+        boxShadow: '0 8px 32px rgba(30, 58, 95, 0.3), 0 2px 8px rgba(212, 175, 55, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
       }}
     >
+      {/* Decorative corner elements */}
+      <div 
+        className="absolute top-0 right-0 w-32 h-32 opacity-10"
+        style={{
+          background: 'radial-gradient(circle, #d4af37 0%, transparent 70%)'
+        }}
+      ></div>
+      <div 
+        className="absolute bottom-0 left-0 w-24 h-24 opacity-10"
+        style={{
+          background: 'radial-gradient(circle, #056839 0%, transparent 70%)'
+        }}
+      ></div>
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
           backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.1) 20px, rgba(255,255,255,0.1) 40px)`
