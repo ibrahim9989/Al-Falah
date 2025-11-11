@@ -97,50 +97,91 @@ export default function PrayerCountdown() {
       </div>
 
       <div className="relative z-10 text-white">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-5">
           <div>
-            <p className="text-sm opacity-90 mb-1">Next Prayer</p>
-            <p className="text-2xl font-kufi font-bold">{nextPrayer.name}</p>
+            <p className="text-xs opacity-75 mb-1 font-semibold uppercase tracking-wide">Next Prayer</p>
+            <p className="text-3xl font-kufi font-bold" style={{
+              textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
+            }}>{nextPrayer.name}</p>
           </div>
           {isPrayerTime && (
             <div className="animate-pulse">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-              </svg>
+              <div 
+                className="p-3 rounded-full"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.2)',
+                  boxShadow: '0 4px 12px rgba(255, 255, 255, 0.3)'
+                }}
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+              </div>
             </div>
           )}
         </div>
 
         {isPrayerTime ? (
-          <div className="text-center py-4">
-            <p className="text-3xl font-kufi font-bold mb-2">It&apos;s Prayer Time!</p>
-            <p className="text-sm opacity-90">{nextPrayer.time}</p>
+          <div className="text-center py-6">
+            <div 
+              className="inline-block px-6 py-3 rounded-2xl mb-3"
+              style={{
+                background: 'rgba(255, 255, 255, 0.2)',
+                boxShadow: '0 4px 12px rgba(255, 255, 255, 0.3)'
+              }}
+            >
+              <p className="text-4xl font-kufi font-bold mb-2" style={{
+                textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
+              }}>It&apos;s Prayer Time!</p>
+            </div>
+            <p className="text-lg opacity-90 font-semibold">{nextPrayer.time}</p>
           </div>
         ) : (
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-4">
             <div className="text-center">
-              <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
-                <p className="text-3xl font-kufi font-bold">{String(countdown.hours).padStart(2, '0')}</p>
-                <p className="text-xs opacity-75 mt-1">Hours</p>
+              <div 
+                className="bg-white/25 rounded-2xl p-5 backdrop-blur-sm border border-white/30"
+                style={{
+                  boxShadow: '0 4px 12px rgba(255, 255, 255, 0.2)'
+                }}
+              >
+                <p className="text-4xl font-kufi font-bold mb-1" style={{
+                  textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
+                }}>{String(countdown.hours).padStart(2, '0')}</p>
+                <p className="text-xs opacity-80 mt-1 font-semibold uppercase tracking-wide">Hours</p>
               </div>
             </div>
             <div className="text-center">
-              <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
-                <p className="text-3xl font-kufi font-bold">{String(countdown.minutes).padStart(2, '0')}</p>
-                <p className="text-xs opacity-75 mt-1">Minutes</p>
+              <div 
+                className="bg-white/25 rounded-2xl p-5 backdrop-blur-sm border border-white/30"
+                style={{
+                  boxShadow: '0 4px 12px rgba(255, 255, 255, 0.2)'
+                }}
+              >
+                <p className="text-4xl font-kufi font-bold mb-1" style={{
+                  textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
+                }}>{String(countdown.minutes).padStart(2, '0')}</p>
+                <p className="text-xs opacity-80 mt-1 font-semibold uppercase tracking-wide">Minutes</p>
               </div>
             </div>
             <div className="text-center">
-              <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
-                <p className="text-3xl font-kufi font-bold">{String(countdown.seconds).padStart(2, '0')}</p>
-                <p className="text-xs opacity-75 mt-1">Seconds</p>
+              <div 
+                className="bg-white/25 rounded-2xl p-5 backdrop-blur-sm border border-white/30"
+                style={{
+                  boxShadow: '0 4px 12px rgba(255, 255, 255, 0.2)'
+                }}
+              >
+                <p className="text-4xl font-kufi font-bold mb-1" style={{
+                  textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
+                }}>{String(countdown.seconds).padStart(2, '0')}</p>
+                <p className="text-xs opacity-80 mt-1 font-semibold uppercase tracking-wide">Seconds</p>
               </div>
             </div>
           </div>
         )}
 
-        <div className="mt-4 pt-4 border-t border-white/20 text-center">
-          <p className="text-sm opacity-75">Prayer time: {nextPrayer.time}</p>
+        <div className="mt-5 pt-4 border-t border-white/30 text-center">
+          <p className="text-sm opacity-90 font-semibold">Prayer time: <span className="text-[#d4af37]">{nextPrayer.time}</span></p>
         </div>
       </div>
     </div>

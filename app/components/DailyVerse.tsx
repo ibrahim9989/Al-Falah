@@ -80,26 +80,42 @@ export default function DailyVerse() {
       </div>
       
       <div className="relative z-10">
-        <div className="flex items-center gap-2 mb-4">
-          <div 
-            className="p-2 rounded-lg"
-            style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
-          >
-            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
+        <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center gap-3">
+            <div 
+              className="p-3 rounded-xl relative"
+              style={{ 
+                background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, rgba(212, 175, 55, 0.2) 100%)',
+                boxShadow: '0 4px 12px rgba(212, 175, 55, 0.3)'
+              }}
+            >
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h2 className="text-2xl font-kufi font-bold text-white" style={{
+              textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
+            }}>Daily Verse</h2>
           </div>
-          <h2 className="text-xl font-kufi font-semibold text-white">Daily Verse</h2>
         </div>
 
-        <div className="mb-4">
-          <p className="text-2xl font-kufi font-bold text-white mb-3 text-right leading-relaxed" dir="rtl">
+        <div>
+          <p className="text-3xl font-kufi font-bold text-white mb-4 text-right leading-relaxed" dir="rtl" style={{
+            textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+            lineHeight: '1.8'
+          }}>
             {todayVerse.text}
           </p>
-          <p className="text-white/90 text-sm leading-relaxed mb-2">
+          <p className="text-white/95 text-base leading-relaxed mb-3 font-medium" style={{
+            textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)'
+          }}>
             {todayVerse.translation}
           </p>
-          <p className="text-white/70 text-xs" style={{ color: '#d4af37' }}>
+          <p className="text-white/80 text-sm font-semibold px-3 py-1.5 rounded-full inline-block" style={{ 
+            color: '#d4af37',
+            background: 'rgba(212, 175, 55, 0.2)',
+            border: '1px solid rgba(212, 175, 55, 0.3)'
+          }}>
             {todayVerse.source}
           </p>
         </div>
